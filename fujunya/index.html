@@ -522,9 +522,23 @@
         
         .route-map {
             width: 100%;
+            max-width: 800px;
+            height: auto;
             border-radius: 10px;
             margin: 1.5rem 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .map-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .map-caption {
+            margin-top: 0.5rem;
+            color: var(--gray);
+            font-style: italic;
         }
         
         /* Contact Page Styles */
@@ -953,7 +967,10 @@
                     <div>
                         <h2 id="itinerary-title">Your New Zealand Itinerary</h2>
                         <p id="itinerary-details">4-Day Southland Scenic Route</p>
-                        <img id="route-map" class="route-map" src="" alt="Route Map">
+                        <div class="map-container">
+                            <img id="route-map" class="route-map" src="" alt="Route Map">
+                            <div class="map-caption" id="map-caption">Route Map</div>
+                        </div>
                     </div>
                     <button class="btn" id="back-to-selection">
                         <i class="fas fa-arrow-left"></i> Back to Selection
@@ -1454,13 +1471,12 @@
             }
         };
 
-        // Route Map Images
+        // Route Map Images - 修改为正确的GitHub路径
         const routeMaps = {
-            southland: "fujunya/四天路线.png",
-            'north-east': "fujunya/九天路线.png",
-            both: "fujunya/14天路线.png"
+            southland: "https://wwwfjy.github.io/fujunya/%E5%9B%9B%E5%A4%A9%E8%B7%AF%E7%BA%BF.png",
+            'north-east': "https://wwwfjy.github.io/fujunya/%E4%B9%9D%E5%A4%A9%E8%B7%AF%E7%BA%BF.png",
+            both: "https://wwwfjy.github.io/fujunya/14%E5%A4%A9%E8%B7%AF%E7%BA%BF.png"
         };
-
 
         // Page Navigation Functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -1558,6 +1574,7 @@
             const itineraryDetails = document.getElementById('itinerary-details');
             const itineraryDays = document.getElementById('itinerary-days');
             const routeMap = document.getElementById('route-map');
+            const mapCaption = document.getElementById('map-caption');
             
             // Update title
             itineraryTitle.textContent = `Your ${islandName} Itinerary`;
@@ -1566,6 +1583,7 @@
             // Update route map
             routeMap.src = routeMaps[island];
             routeMap.alt = `${islandName} Route Map`;
+            mapCaption.textContent = `${islandName} Route Map`;
             
             // Get itinerary data
             const itinerary = itineraryData[island][duration];
@@ -1633,8 +1651,4 @@
         }
     </script>
 </body>
-
 </html>
-
-
-
