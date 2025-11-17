@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel New Zealand | Your Ultimate NZ Travel Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d5bb5;
+            --secondary: #34a853;
+            --accent: #fbbc05;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Navigation Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+        }
+        
+        .logo i {
+            margin-right: 15px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        /* Page Content Styles */
+        .page {
+            display: none;
+            padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--dark);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+        
+        /* Home Page Styles */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://static.p-airnz.com.cn/cms/assets/Common-Assets/Destination-Images/new-zealand-auckland-aerial-view-of-mt-eden-nc-rf-noexp-allsites-640x420__ScaleMaxWidthWzkxNF0_ExtRewriteWyJqcGciLCJhdmlmIl0.avif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(26,115,232,0.3), rgba(52,168,83,0.3));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .hero h1::after {
+            display: none;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(26,115,232,0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn i {
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26,115,232,0.4);
+        }
+        
+        .btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            box-shadow: 0 4px 15px rgba(52,168,83,0.3);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2d8f47;
+            box-shadow: 0 6px 20px rgba(52,168,83,0.4);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            background-color: rgba(26,115,232,0.1);
+            border-radius: 50%;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* Tour Planning Page Styles */
+        .destination-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .destination-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .destination-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+        
+        .destination-card:hover .destination-image {
+            transform: scale(1.05);
+        }
+        
+        .southland-route {
+            /* Image can be changed */
+            background-image: url('https://resource.36dong.com/badazhou/www/res/20170413/2ea142c01243146a90a7ca6909d015ba.jpg');
+        }
+        
+        .north-east-loop {
+            /* Image can be changed */
+            background-image: url('https://www.newzealand.com/assets/Digital-Platform-Use-Only/TBD-assets-on-nonlistings/img-1536220802-2080-5179-p-3D20D5B3-D511-77A3-D1C48196D0261105-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_FocalPointCropWzg1MywxOTIwLDUwLDUwLDc1LCJ3ZWJwIiw2NSwyLjVd.webp');
+        }
+        
+        .both-islands {
+            /* Image can be changed */
+            background-image: url('https://pic1.zhimg.com/v2-c68d85c83d0b4b2da2a15578a0562b40_r.jpg?source=1940ef5c');
+        }
+        
+        .destination-content {
+            padding: 1.8rem;
+            position: relative;
+        }
+        
+        .destination-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .destination-content h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(251,188,5,0.3);
+        }
+        
+        .route-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            background-color: var(--light);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .route-info-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .route-info-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .route-info-item span {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .attractions-list {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .attractions-list li {
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+        }
+        
+        /* Itinerary Section Styles */
+        .itinerary-container {
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .itinerary-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .itinerary-days {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .day-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .day-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .day-content {
+            padding: 1.5rem;
+        }
+        
+        .day-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .day-activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .activity {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .activity:hover {
+            background: rgba(26,115,232,0.05);
+        }
+        
+        .activity-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            min-width: 40px;
+        }
+        
+        .activity-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .activity-time {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .accommodation-info {
+            background: rgba(52,168,83,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .accommodation-info i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .route-map {
+            width: 100%;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Contact Page Styles */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-item-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26,115,232,0.1);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .itinerary-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .itinerary-header .btn {
+                margin-top: 1rem;
+            }
+            
+            .route-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-card, .destination-card {
+                min-width: 100%;
+            }
+            
+            .day-activities {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-mountain"></i>
+                    Travel New Zealand
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link active" data-page="home">
+                        <i class="fas fa-home"></i> Home
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-page="tour">
+                        <i class="fas fa-route"></i> Tour
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Discover the Beauty of New Zealand</h1>
+                    <p>Your ultimate guide to exploring the stunning landscapes, vibrant culture, and unique experiences in Aotearoa.</p>
+                    <a href="#" class="btn nav-link" data-page="tour">
+                        Start Planning Your Trip <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <h2>Why Choose Us?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Expert Guides</h3>
+                    <p>Our team of local experts knows the best spots and hidden gems across both islands.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Custom Itineraries</h3>
+                    <p>We create personalized travel plans based on your interests, timeframe, and budget.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hotel"></i>
+                    <h3>Accommodation & Transport</h3>
+                    <p>We handle all your booking needs from hotels to rental cars and domestic flights.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tour Planning Page -->
+        <section id="tour" class="page">
+            <h1>Plan Your New Zealand Adventure</h1>
+            <p>Choose your preferred destination and let us create the perfect itinerary for you.</p>
+            
+            <div class="destination-options">
+                <div class="destination-card">
+                    <div class="destination-image southland-route"></div>
+                    <div class="price-tag">From $1,299</div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-mountain"></i> Southland Scenic Route - 4 Days</h3>
+                        <p>Explore the stunning landscapes of Southland, featuring breathtaking wildlife, magnificent natural scenery and delicious seafood.</p>
+                        
+                        <div class="route-info">
+                            <div class="route-info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>4 Days</div>
+                            </div>
+                            <div class="route-info-item">
+                                <i class="fas fa-road"></i>
+                                <div>810 km</div>
+                            </div>
+                            <div class="route-info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>Depart from Dunedin</div>
+                            </div>
+                        </div>
+                        
+                        <h4>Highlights:</h4>
+                        <ul class="attractions-list">
+                            <li>Picturesque coastline</li>
+                            <li>Rich native wildlife</li>
+                            <li>Fiordland National Park</li>
+                            <li>Nugget Point Lighthouse</li>
+                            <li>Milford Sound</li>
+                        </ul>
+                        
+                        <button class="btn btn-secondary destination-select" data-island="southland">
+                            Select Southland Route <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <div class="destination-image north-east-loop"></div>
+                    <div class="price-tag">From $2,499</div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-umbrella-beach"></i> North Island East Coast Loop - 9 Days</h3>
+                        <p>Journey through the North Island's east coast, discovering surf beaches, bubbling mud pools and serene lakes.</p>
+                        
+                        <div class="route-info">
+                            <div class="route-info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>9 Days</div>
+                            </div>
+                            <div class="route-info-item">
+                                <i class="fas fa-road"></i>
+                                <div>1600 km</div>
+                            </div>
+                            <div class="route-info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>Depart from Auckland</div>
+                            </div>
+                        </div>
+                        
+                        <h4>Highlights:</h4>
+                        <ul class="attractions-list">
+                            <li>Coromandel beaches</li>
+                            <li>Te Urewera National Park</li>
+                            <li>Rotorua geothermal attractions</li>
+                            <li>Hot Water Beach</li>
+                            <li>Hobbiton Movie Set</li>
+                        </ul>
+                        
+                        <button class="btn btn-secondary destination-select" data-island="north-east">
+                            Select North-East Loop <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <div class="destination-image both-islands"></div>
+                    <div class="price-tag">From $4,799</div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-globe-americas"></i> Both Islands Discovery - 14 Days</h3>
+                        <p>Embark on a 14-day New Zealand discovery journey to explore the country's most popular attractions and many lesser-known hidden gems.</p>
+                        
+                        <div class="route-info">
+                            <div class="route-info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>14 Days</div>
+                            </div>
+                            <div class="route-info-item">
+                                <i class="fas fa-road"></i>
+                                <div>2265 km</div>
+                            </div>
+                            <div class="route-info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>Queenstown to Auckland</div>
+                            </div>
+                        </div>
+                        
+                        <h4>Highlights:</h4>
+                        <ul class="attractions-list">
+                            <li>Beaches and mountains</li>
+                            <li>Whale watching</li>
+                            <li>World-class wineries</li>
+                            <li>Cook Strait ferry crossing</li>
+                            <li>Diverse landscapes</li>
+                        </ul>
+                        
+                        <button class="btn btn-secondary destination-select" data-island="both">
+                            Select Both Islands <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Itinerary Section -->
+            <div id="itinerary-container" class="itinerary-container">
+                <div class="itinerary-header">
+                    <div>
+                        <h2 id="itinerary-title">Your New Zealand Itinerary</h2>
+                        <p id="itinerary-details">4-Day Southland Scenic Route</p>
+                        <img id="route-map" class="route-map" src="" alt="Route Map">
+                    </div>
+                    <button class="btn" id="back-to-selection">
+                        <i class="fas fa-arrow-left"></i> Back to Selection
+                    </button>
+                </div>
+                
+                <div class="itinerary-days" id="itinerary-days">
+                    <!-- Itinerary content will be dynamically generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <h1>Get In Touch</h1>
+            <p>Have questions or ready to start planning your trip? Contact us today!</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-item-content">
+                            <h3>Email</h3>
+                            <p>info@travelnewzealand.com</p>
+                            <p>bookings@travelnewzealand.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-content">
+                            <h3>Phone</h3>
+                            <p>+64 9 123 4567</p>
+                            <p>+64 800 123 456 (Toll Free)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-content">
+                            <h3>Address</h3>
+                            <p>123 Queen Street, Auckland, New Zealand</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-item-content">
+                            <h3>Office Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                            <p>Saturday: 10:00 AM - 2:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="booking">Booking Information</option>
+                                <option value="custom">Custom Tour Request</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required placeholder="Tell us about your travel plans..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Travel New Zealand</h3>
+                    <p>Your trusted partner for unforgettable New Zealand adventures since 2010.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="tour"><i class="fas fa-chevron-right"></i> Tour</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Auckland</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Queenstown</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Rotorua</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Wellington</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Christchurch</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Travel New Zealand - New Zealand Tourism. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Itinerary Data
+        const itineraryData = {
+            southland: {
+                4: [
+                    {
+                        day: 1,
+                        title: "From Dunedin to Invercargill via The Catlins",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Other/img-1536012255-9458-6899-2653996258_835f78284f_o__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_FocalPointCropWzExMDAsMzIwMCw1MCw1MCw3NSwid2VicCIsNjUsMi41XQ.webp",
+                        activities: [
+                            { time: "8:00 AM", icon: "car", title: "Depart from Dunedin", description: "Travel along the coast from Dunedin, exploring the picturesque Catlins region" },
+                            { time: "10:00 AM", icon: "landmark", title: "Nugget Point Lighthouse", description: "Stand on the steep headland to admire the surrounding rock formations" },
+                            { time: "1:00 PM", icon: "water", title: "Purakaunui Falls", description: "Appreciate nature's craftsmanship" },
+                            { time: "3:00 PM", icon: "fish", title: "Bluff Oysters", description: "Taste the famous Bluff oysters" },
+                            { time: "5:00 PM", icon: "city", title: "Arrive in Invercargill", description: "New Zealand's southernmost city, with options for stargazing or visiting the transport museum" }
+                        ],
+                        accommodation: "Invercargill Hotel"
+                    },
+                    {
+                        day: 2,
+                        title: "From Invercargill to Te Anau",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Fiordland/img-1542519222-6596-9525-353F5BD1-D702-8D36-8C9130760D423B52__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_FocalPointCropWzExMDAsMzIwMCw1NCw1Myw3NSwid2VicCIsNjUsMi41XQ.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Riverton", description: "Visit the 'Te Hikoi Southern Journey' exhibition to learn about Riverton's bicultural history" },
+                            { time: "11:00 AM", icon: "hiking", title: "Tuatapere", description: "Experience natural landscapes and cultural history, suitable for hiking, mountain biking and other outdoor activities" },
+                            { time: "2:00 PM", icon: "lake", title: "Arrive in Te Anau", description: "Te Anau is the gateway to Fiordland National Park" },
+                            { time: "4:00 PM", icon: "star", title: "Glowworm Caves", description: "Visit the magical glowworm caves" },
+                            { time: "7:00 PM", icon: "film", title: "Fiordland Cinema", description: "Watch the short film 'Ata Whenua' to explore the inner beauty of this World Heritage site" }
+                        ],
+                        accommodation: "Te Anau Lakeside Hotel"
+                    },
+                    {
+                        day: 3,
+                        title: "Milford Sound Day Trip",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Fiordland/516841-milford-sound-fiordland-web-2560__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_FocalPointCropWzExMDAsMzIwMCw1Miw3Myw3NSwid2VicCIsNjUsMi41XQ.webp",
+                        activities: [
+                            { time: "7:00 AM", icon: "car", title: "Travel to Milford Sound", description: "Journey along one of New Zealand's most beautiful scenic drives to Milford Sound" },
+                            { time: "9:00 AM", icon: "lake", title: "Mirror Lakes", description: "Admire the mirror-like reflections" },
+                            { time: "11:00 AM", icon: "mountain", title: "Homer Tunnel", description: "Pass through the rugged Homer Tunnel" },
+                            { time: "1:00 PM", icon: "ship", title: "Milford Sound Cruise", description: "Take a cruise to experience the beauty of the sound, admiring towering waterfalls and adorable seals" },
+                            { time: "5:00 PM", icon: "car", title: "Return to Te Anau", description: "Return to Te Anau for overnight accommodation in the evening" }
+                        ],
+                        accommodation: "Te Anau Lakeside Hotel"
+                    },
+                    {
+                        day: 4,
+                        title: "From Te Anau to Queenstown",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Fiordland/516841-milford-sound-fiordland-web-2560__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_FocalPointCropWzExMDAsMzIwMCw1Miw3Myw3NSwid2VicCIsNjUsMi41XQ.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Queenstown", description: "Journey to the vibrant and charming alpine resort town of Queenstown" },
+                            { time: "11:00 AM", icon: "skiing", title: "Adventure Activities", description: "Experience bungy jumping, jet boating and other adventure activities" },
+                            { time: "2:00 PM", icon: "wine-glass", title: "Winery Tasting", description: "Visit award-winning wineries and sample fine wines" },
+                            { time: "4:00 PM", icon: "shopping-bag", title: "Boutique Shopping", description: "Enjoy boutique shopping experiences in Queenstown" },
+                            { time: "7:00 PM", icon: "utensils", title: "Farewell Dinner", description: "Enjoy a farewell dinner by Lake Wakatipu with beautiful views" }
+                        ],
+                        accommodation: "Queenstown Resort Hotel"
+                    }
+                ]
+            },
+            'north-east': {
+                9: [
+                    {
+                        day: 1,
+                        title: "From Auckland to Whitianga",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/The-Coromandel/img-1536196569-1325-23027-009C4156-A68D-F23C-502A8A8F9CD93C08__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Depart Auckland", description: "Head south to the Coromandel Peninsula" },
+                            { time: "11:00 AM", icon: "spa", title: "Miranda Hot Springs", description: "Relax at the Miranda Hot Springs and bird sanctuary" },
+                            { time: "1:00 PM", icon: "history", title: "Thames Historic Town", description: "Learn about New Zealand's gold mining history and visit the local gold mining museum" },
+                            { time: "3:00 PM", icon: "umbrella-beach", title: "Arrive in Whitianga", description: "Explore surfing, coastal fishing and beach trails" }
+                        ],
+                        accommodation: "Whitianga Beachfront Hotel"
+                    },
+                    {
+                        day: 2,
+                        title: "From Whitianga to Tauranga",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Bay-of-Plenty/img-1536144953-3498-8104-p-641F632C-C227-50C6-1BC3D38DD505CA7A-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "umbrella-beach", title: "Hot Water Beach", description: "Visit Hot Water Beach at the optimal time" },
+                            { time: "11:00 AM", icon: "water", title: "Cathedral Cove", description: "Visit the world-famous Cathedral Cove" },
+                            { time: "1:00 PM", icon: "car", title: "Travel to Whangamata", description: "Explore the surf town of Whangamata" },
+                            { time: "3:00 PM", icon: "ship", title: "Mauao Island Wildlife Sanctuary", description: "Explore the wildlife sanctuary on Mauao Island" },
+                            { time: "5:00 PM", icon: "city", title: "Arrive in Tauranga", description: "Explore Mount Maunganui and surrounding attractions" }
+                        ],
+                        accommodation: "Tauranga Beachfront Resort"
+                    },
+                    {
+                        day: 3,
+                        title: "From Tauranga to Whakatane",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Bay-of-Plenty/wdc-photos-2016-whale-island-kayak1__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Whakatane", description: "Travel to one of New Zealand's sunniest towns" },
+                            { time: "11:00 AM", icon: "kiwi-bird", title: "Omataroa Eco Tours", description: "Experience the beauty of New Zealand's national bird, the kiwi, and learn about Maori culture and conservation efforts" },
+                            { time: "2:00 PM", icon: "hiking", title: "Rangitaiki Plains", description: "Admire the stunning views of the Rangitaiki Plains and Pacific Ocean" },
+                            { time: "4:00 PM", icon: "history", title: "Maori Cultural Experience", description: "Learn about local Maori culture and history" }
+                        ],
+                        accommodation: "Whakatane Resort Hotel"
+                    },
+                    {
+                        day: 4,
+                        title: "From Whakatane to Gisborne via Te Araroa",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Tairawhiti/img-1536108634-5632-8519-p-FD7643FF-F6EF-325F-31A07DA69AD41997-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "8:00 AM", icon: "car", title: "East Cape Road", description: "Travel along the scenic but challenging East Cape Road" },
+                            { time: "10:00 AM", icon: "church", title: "Tikitiki Maori Church", description: "Visit the beautiful Maori church" },
+                            { time: "12:00 PM", icon: "spa", title: "Te Puia Hot Springs", description: "Relax in the hot springs area" },
+                            { time: "2:00 PM", icon: "landmark", title: "Tolaga Bay Wharf", description: "Visit the historic 660-meter wharf" },
+                            { time: "4:00 PM", icon: "wine-glass", title: "Arrive in Gisborne", description: "Experience thrilling surfing activities, Maori culture and taste new flavor Chardonnay" }
+                        ],
+                        accommodation: "Gisborne Wine Estate"
+                    },
+                    {
+                        day: 5,
+                        title: "From Gisborne to Wairoa via Lake Waikaremoana",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Digital-Platform-Use-Only/TBD-assets-on-nonlistings/img-1536088508-3285-17031-p-3441F3B2-A244-E4F6-D214BCE400F6D43B-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Lake Waikaremoana", description: "Choose the inland route or coastal route" },
+                            { time: "11:00 AM", icon: "tree", title: "Hackfalls Arboretum", description: "Visit New Zealand's most diverse private arboretum" },
+                            { time: "1:00 PM", icon: "spa", title: "Morere Hot Springs", description: "Experience Morere Hot Springs" },
+                            { time: "3:00 PM", icon: "lake", title: "Lake Waikaremoana", description: "Explore the lake formed over 2200 years ago by a landslide" },
+                            { time: "5:00 PM", icon: "hiking", title: "Lake Waikaremoana Track", description: "Experience one of New Zealand's Great Walks" }
+                        ],
+                        accommodation: "Wairoa Lakeside Lodge"
+                    },
+                    {
+                        day: 6,
+                        title: "From Wairoa to Taupo via Napier",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Hawkes-Bay/img-1536148186-7356-22579-p-9A61C6AF-D6F0-0A0C-AFA2321A1EB1DD7B-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "city", title: "Napier Art Deco Capital", description: "Explore the world's Art Deco capital" },
+                            { time: "11:00 AM", icon: "wine-glass", title: "Vineyard Tour", description: "Visit easily accessible vineyards" },
+                            { time: "1:00 PM", icon: "bird", title: "Cape Kidnappers Gannet Colony", description: "Visit the gannet colony" },
+                            { time: "3:00 PM", icon: "car", title: "Travel to Taupo", description: "Travel to New Zealand's largest lake, Lake Taupo" },
+                            { time: "5:00 PM", icon: "water", title: "Lake Taupo Activities", description: "Participate in water activities or visit the massive Mine Bay Maori Rock Carvings" }
+                        ],
+                        accommodation: "Taupo Lake Resort"
+                    },
+                    {
+                        day: 7,
+                        title: "From Taupo to Rotorua",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Rotorua/img-1536041887-9411-15791-p-1C0FCA4D-9288-654B-1A303304AF0B1313-2544003__ExtRewriteWyJKUEciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "water", title: "Huka Falls", description: "Visit Huka Falls" },
+                            { time: "11:00 AM", icon: "industry", title: "Wairakei Geothermal Power Station", description: "Visit world-famous golf courses and the geothermal power station" },
+                            { time: "1:00 PM", icon: "mountain", title: "Orakei Korako Cave and Thermal Park", description: "Explore New Zealand's most spectacular geothermal phenomena" },
+                            { time: "3:00 PM", icon: "spa", title: "Arrive in Rotorua", description: "Experience bubbling mud pools and steaming volcanic vents" },
+                            { time: "5:00 PM", icon: "hot-tub", title: "Hell's Gate", description: "Enjoy mud baths and sulfur hot springs" }
+                        ],
+                        accommodation: "Rotorua Geothermal Resort"
+                    },
+                    {
+                        day: 8,
+                        title: "From Rotorua to Cambridge via Hobbiton",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Hamilton-Waikato/img-1536155599-7982-3958-p-1CB6C7C3-CDBF-8310-AF47425C9099F3E8-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "film", title: "Hobbiton Movie Set", description: "Visit life-sized Hobbit holes and explore the magical Middle-earth" },
+                            { time: "12:00 PM", icon: "beer", title: "Green Dragon Inn", description: "Enjoy a refreshing ale at the Green Dragon Inn" },
+                            { time: "2:00 PM", icon: "car", title: "Travel to Cambridge", description: "Travel to the heart of Waikato's horse training region" },
+                            { time: "4:00 PM", icon: "shopping-bag", title: "Cambridge Exploration", description: "Shop for antiques and artworks, or watch a local equestrian show" }
+                        ],
+                        accommodation: "Cambridge Boutique Hotel"
+                    },
+                    {
+                        day: 9,
+                        title: "From Cambridge to Auckland via Hamilton",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Hamilton-Waikato/img-1536012755-9108-9169-2338059445_136d19bc32_o__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Hamilton", description: "Travel to New Zealand's fourth largest city" },
+                            { time: "10:30 AM", icon: "water", title: "Waikato River", description: "Take a cruise or walk along the majestic Waikato River" },
+                            { time: "12:30 PM", icon: "tree", title: "Hamilton Gardens", description: "Explore the giant free-flight aviary in the botanical gardens" },
+                            { time: "2:30 PM", icon: "car", title: "Return to Auckland", description: "Travel back to Auckland along the highway" },
+                            { time: "5:00 PM", icon: "utensils", title: "Farewell Dinner", description: "Enjoy a delicious meal at one of Auckland's dining precincts to end the journey" }
+                        ],
+                        accommodation: "Auckland City Center Hotel"
+                    }
+                ]
+            },
+            both: {
+                14: [
+                    {
+                        day: 1,
+                        title: "From Queenstown to Wanaka",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Wanaka/img-1536310654-4690-13285-211C5FBA-0A17-B4DF-82AC99D68E5675E6__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Depart Queenstown", description: "Explore adventure activities, winery tours, skydiving or golf at Queenstown" },
+                            { time: "11:00 AM", icon: "history", title: "Arrowtown Exploration", description: "Visit local shops and cafes, try gold panning, visit galleries or explore Chinese settlement" },
+                            { time: "2:00 PM", icon: "lake", title: "Arrive in Wanaka", description: "Experience waterfall climbing and unique cinema experiences" }
+                        ],
+                        accommodation: "Wanaka Resort"
+                    },
+                    {
+                        day: 2,
+                        title: "Wanaka to Aoraki Mount Cook",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Christchurch-Canterbury/img-1536280982-3035-15788-F384E624-9404-2963-6B0FCA6AEAB2CB13-v3__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "8:00 AM", icon: "car", title: "Travel to Aoraki Mount Cook", description: "Pass through Omarama, popular with glider enthusiasts" },
+                            { time: "11:00 AM", icon: "mountain", title: "Aoraki Mount Cook National Park", description: "Explore hiking and climbing options in New Zealand's highest peak area" },
+                            { time: "2:00 PM", icon: "helicopter", title: "Glacier Exploration", description: "Take scenic flights, short walks or boat tours to explore glaciers" }
+                        ],
+                        accommodation: "Aoraki Mount Cook Lodge"
+                    },
+                    {
+                        day: 3,
+                        title: "Mount Cook to Christchurch via Lake Tekapo",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Christchurch-Canterbury/img-1536171932-3750-12367-A0B4CC2F-E349-6EED-C31C090F22DF2F01__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Lake Tekapo", description: "Stop at the turquoise Lake Tekapo for fishing, kayaking, biking or skiing" },
+                            { time: "12:00 PM", icon: "church", title: "Church of the Good Shepherd", description: "Visit iconic church and sheepdog statue for photos" },
+                            { time: "3:00 PM", icon: "city", title: "Arrive in Christchurch", description: "Explore New Zealand's largest South Island city with river punting and beach activities" }
+                        ],
+                        accommodation: "Christchurch City Hotel"
+                    },
+                    {
+                        day: 4,
+                        title: "Christchurch to Kaikoura",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Digital-Platform-Use-Only/TBD-assets-on-nonlistings/img-1536229746-1551-12100-p-D8C03316-919D-3951-1AC685FA504D7F40-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Kaikoura", description: "Pass through Waikuku, Leithfield and Amberley" },
+                            { time: "12:00 PM", icon: "wine-glass", title: "Waipara Lunch Stop", description: "Enjoy lunch in Waipara, known for vineyards and olive groves" },
+                            { time: "2:00 PM", icon: "whale", title: "Kaikoura Wildlife", description: "Take whale watching tours to see minke whales, humpbacks and dolphins" }
+                        ],
+                        accommodation: "Kaikoura Seaside Hotel"
+                    },
+                    {
+                        day: 5,
+                        title: "Kaikoura to Blenheim",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Marlborough/img-1536170624-92-6380-D4FD77CA-0D55-FF30-ED05D3F9B0E4BAEF__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Blenheim", description: "Travel north along Pacific Coast through Wairau Plains" },
+                            { time: "12:00 PM", icon: "wine-glass", title: "Marlborough Wine Region", description: "Visit over 20 wineries, famous for Sauvignon Blanc" },
+                            { time: "3:00 PM", icon: "ship", title: "Marlborough Sounds", description: "Explore sounds by boat, kayak, bike or hiking" }
+                        ],
+                        accommodation: "Blenheim Wine Estate"
+                    },
+                    {
+                        day: 6,
+                        title: "Picton to Wellington",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Wellington/img-1536215810-744-4859-257F4214-EC6C-4EFC-6BA798D49933D06F__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "ship", title: "Cook Strait Ferry", description: "Take ferry across Cook Strait through Marlborough Sounds" },
+                            { time: "12:00 PM", icon: "city", title: "Wellington Arrival", description: "Explore museums, galleries, cafes, restaurants and craft breweries" },
+                            { time: "3:00 PM", icon: "mountain", title: "Mount Victoria", description: "Enjoy panoramic views of city and harbor" }
+                        ],
+                        accommodation: "Wellington City Hotel"
+                    },
+                    {
+                        day: 7,
+                        title: "Wellington to Masterton",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Wairarapa/img-1536308921-230-5684-p-7B4A8256-0548-4A6A-DA01D7245B3B338E-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Masterton", description: "Experience more relaxed pace in Wairarapa countryside" },
+                            { time: "11:00 AM", icon: "wine-glass", title: "Martinborough Wineries", description: "Visit boutique vineyards known for Pinot Noir" },
+                            { time: "2:00 PM", icon: "history", title: "Masterton Exploration", description: "Visit shearing shed and Wairarapa Museum of Art and History" }
+                        ],
+                        accommodation: "Masterton Country Hotel"
+                    },
+                    {
+                        day: 8,
+                        title: "Masterton to Napier",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Hawkes-Bay/img-1536148186-7356-22579-p-9A61C6AF-D6F0-0A0C-AFA2321A1EB1DD7B-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Napier", description: "Visit Pukaha Mount Bruce Wildlife Centre with white kiwi birds" },
+                            { time: "12:00 PM", icon: "city", title: "Napier Art Deco", description: "Explore world's Art Deco capital rebuilt after 1931 earthquake" },
+                            { time: "3:00 PM", icon: "bird", title: "Cape Kidnappers", description: "Visit gannet colony at Cape Kidnappers" }
+                        ],
+                        accommodation: "Napier Art Deco Hotel"
+                    },
+                    {
+                        day: 9,
+                        title: "Napier to Gisborne",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Digital-Platform-Use-Only/TBD-assets-on-nonlistings/img-1536220802-2080-5179-p-3D20D5B3-D511-77A3-D1C48196D0261105-2544003__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Gisborne", description: "Choose inland route or coastal route via Morere Hot Springs" },
+                            { time: "12:00 PM", icon: "tree", title: "Hackfalls Arboretum", description: "Visit New Zealand's most diverse private arboretum" },
+                            { time: "3:00 PM", icon: "wine-glass", title: "Gisborne Wine Region", description: "Explore over 20 vineyards, famous for Chardonnay" }
+                        ],
+                        accommodation: "Gisborne Beach Hotel"
+                    },
+                    {
+                        day: 10,
+                        title: "Gisborne to Whakatane",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Bay-of-Plenty/img-1546132953-8833-29710-0AD0F01B-ECB5-74A9-C9EF9C206FE627E9__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Whakatane", description: "Travel through Waioeka Gorge to Opotiki" },
+                            { time: "12:00 PM", icon: "umbrella-beach", title: "Ohope Beach", description: "Visit friendly coastal town with kilometers of beaches" },
+                            { time: "3:00 PM", icon: "volcano", title: "White Island", description: "Take boat or helicopter to view active volcano island" }
+                        ],
+                        accommodation: "Whakatane Resort"
+                    },
+                    {
+                        day: 11,
+                        title: "Whakatane to Rotorua",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Campaigns/If-You-Seek/Hells_Gate-Rotorua-Miles-Holden-4__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Rotorua", description: "Short drive to New Zealand's geothermal heartland" },
+                            { time: "11:00 AM", icon: "mountain", title: "Geothermal Areas", description: "Explore bubbling mud pools and erupting geysers" },
+                            { time: "2:00 PM", icon: "users", title: "Maori Village", description: "Visit Maori villages to learn about local history and culture" }
+                        ],
+                        accommodation: "Rotorua Geothermal Resort"
+                    },
+                    {
+                        day: 12,
+                        title: "Rotorua to Whitianga via Tauranga",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/The-Coromandel/img-1536294336-6908-7619-36AF1468-0DCA-58D6-D8D37BC292F8E080__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Tauranga", description: "Cross Mamaku Ranges with beautiful scenery" },
+                            { time: "12:00 PM", icon: "city", title: "Tauranga Exploration", description: "Enjoy cafe culture, fishing, diving or dolphin watching" },
+                            { time: "3:00 PM", icon: "umbrella-beach", title: "Mount Maunganui", description: "Walk along Mount Maunganui beach" }
+                        ],
+                        accommodation: "Whitianga Beach Hotel"
+                    },
+                    {
+                        day: 13,
+                        title: "Whitianga to Auckland",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/AKL-Mt-Eden-Summit-City-View_DSC_4666__ExtRewriteWyJwbmciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "car", title: "Travel to Auckland", description: "Stop at historic Thames to learn about gold mining history" },
+                            { time: "12:00 PM", icon: "spa", title: "Miranda Hot Springs", description: "Relax at Miranda hot springs and bird sanctuary" },
+                            { time: "3:00 PM", icon: "city", title: "Auckland Arrival", description: "Explore harbors, museums, galleries and adventure activities" }
+                        ],
+                        accommodation: "Auckland City Hotel"
+                    },
+                    {
+                        day: 14,
+                        title: "Explore Auckland",
+                        // Image can be changed
+                        image: "https://www.newzealand.com/assets/Tourism-NZ/Auckland/img-1536199501-3121-30574-14C022E1-F184-CECA-0A123490F487A9EE__ExtRewriteWyJqcGciLCJ3ZWJwIl0_aWxvdmVrZWxseQo_CropResizeWzE5MjAsbnVsbCw3NSwid2VicCJd.webp",
+                        activities: [
+                            { time: "9:00 AM", icon: "ship", title: "Waiheke Island", description: "Take ferry to Waiheke Island to visit vineyards" },
+                            { time: "12:00 PM", icon: "mountain", title: "Rangitoto Island", description: "Climb extinct volcano Rangitoto Island" },
+                            { time: "3:00 PM", icon: "shopping-bag", title: "Auckland Shopping", description: "Explore boutique shops and designer stores" },
+                            { time: "7:00 PM", icon: "utensils", title: "Farewell Dinner", description: "Enjoy farewell dinner at waterfront restaurant" }
+                        ],
+                        accommodation: "Auckland City Hotel"
+                    }
+                ]
+            }
+        };
+
+        // Route Map Images
+        const routeMaps = {
+            southland: "D:/荆楚理工学院/作业/外教/网页技术/fujunya/四天路线.png",
+            'north-east': "D:/荆楚理工学院/作业/外教/网页技术/fujunya/九天路线.png",
+            both: "D:/荆楚理工学院/作业/外教/网页技术/fujunya/14天路线.png"
+        };
+
+
+        // Page Navigation Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active navigation link
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding page
+                    const targetPage = this.getAttribute('data-page');
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        if (page.id === targetPage) {
+                            page.classList.add('active');
+                            
+                            // Scroll to top of page
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            });
+            
+            // Form submission handling
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Here you can add AJAX request to send form data
+                    // For now, just show success message
+                    alert(`Thank you ${name}! Your message has been sent successfully. We will get back to you at ${email} soon.`);
+                    this.reset();
+                });
+            }
+            
+            // Destination selection buttons
+            const destinationBtns = document.querySelectorAll('.destination-select');
+            destinationBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const island = this.getAttribute('data-island');
+                    
+                    let islandName = '';
+                    let duration = 0;
+                    switch(island) {
+                        case 'southland':
+                            islandName = 'Southland Scenic Route';
+                            duration = 4;
+                            break;
+                        case 'north-east':
+                            islandName = 'North Island East Coast Loop';
+                            duration = 9;
+                            break;
+                        case 'both':
+                            islandName = 'Both Islands Discovery';
+                            duration = 14;
+                            break;
+                    }
+                    
+                    // Show itinerary
+                    showItinerary(island, duration, islandName);
+                    
+                    // Scroll to itinerary section
+                    document.getElementById('itinerary-container').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Back to selection button
+            document.getElementById('back-to-selection').addEventListener('click', function() {
+                document.getElementById('itinerary-container').style.display = 'none';
+            });
+        });
+        
+        // Show itinerary function
+        function showItinerary(island, duration, islandName) {
+            const itineraryContainer = document.getElementById('itinerary-container');
+            const itineraryTitle = document.getElementById('itinerary-title');
+            const itineraryDetails = document.getElementById('itinerary-details');
+            const itineraryDays = document.getElementById('itinerary-days');
+            const routeMap = document.getElementById('route-map');
+            
+            // Update title
+            itineraryTitle.textContent = `Your ${islandName} Itinerary`;
+            itineraryDetails.textContent = `${duration}-Day ${islandName} Adventure`;
+            
+            // Update route map
+            routeMap.src = routeMaps[island];
+            routeMap.alt = `${islandName} Route Map`;
+            
+            // Get itinerary data
+            const itinerary = itineraryData[island][duration];
+            
+            // Clear existing content
+            itineraryDays.innerHTML = '';
+            
+            // Generate itinerary HTML
+            itinerary.forEach(day => {
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card';
+                
+                let activitiesHTML = '';
+                day.activities.forEach(activity => {
+                    activitiesHTML += `
+                        <div class="activity">
+                            <div class="activity-icon">
+                                <i class="fas fa-${activity.icon}"></i>
+                            </div>
+                            <div class="activity-content">
+                                <span class="activity-time">${activity.time}</span>
+                                <h4>${activity.title}</h4>
+                                <p>${activity.description}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                dayCard.innerHTML = `
+                    <div class="day-header">
+                        <h3>Day ${day.day}: ${day.title}</h3>
+                        <span>${getSeasonalRecommendation(island, duration, day.day)}</span>
+                    </div>
+                    <div class="day-content">
+                        <img src="${day.image}" alt="${day.title}" class="day-image">
+                        <div class="day-activities">
+                            ${activitiesHTML}
+                        </div>
+                        <div class="accommodation-info">
+                            <i class="fas fa-hotel"></i>
+                            <div>
+                                <h4>Accommodation</h4>
+                                <p>${day.accommodation}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                itineraryDays.appendChild(dayCard);
+            });
+            
+            // Show itinerary container
+            itineraryContainer.style.display = 'block';
+        }
+        
+        // Get seasonal recommendation
+        function getSeasonalRecommendation(island, duration, day) {
+            const seasons = {
+                southland: "Best Season: October - April",
+                'north-east': "Best Season: October - April",
+                both: "Best Season: October - April"
+            };
+            
+            return seasons[island] || "Year-round destination";
+        }
+    </script>
+</body>
+</html>
